@@ -15,6 +15,12 @@ if (super.q==1)
             else
                 return('\u265b');
 }
+public byte toByte()
+{    
+    if (q==1)
+    return 1;
+    return -1;
+}
 
 public int getValue()
 {

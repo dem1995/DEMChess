@@ -12,5 +12,6 @@ public interface PieceFace
     
     public int getValue();
     
+//    public byte toByte();
     
 }

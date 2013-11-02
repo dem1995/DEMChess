@@ -14,6 +14,12 @@ return('\u2656');
 else
 return('\u265c');
 }
+public byte toByte()
+{    
+    if (q==1)
+    return 1;
+    return -1;
+}
 
 public int getValue()
 {

@@ -20,6 +20,12 @@ public int getValue()
 return (100);
 }
 
+public byte toByte()
+{    
+    if (q==1)
+    return 1;
+    return -1;
+}
 /*
 public boolean isWhite()
 {

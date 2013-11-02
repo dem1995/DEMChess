@@ -17,4 +17,9 @@ public int getValue()
 return (0);
 }
 
+public byte toByte()
+{
+    return 0;
+}
+
 }

@@ -1,8 +1,10 @@
 public class Pawn extends ChessPiece implements PieceFace
 {
 final private int[][] attackRange={{1,1},{-1,1}};
+byte byteValue=;
 public Pawn (int color)
 {
+    
 super (color);
 }
 

@@ -24,6 +24,13 @@ else
 return('\u265d');
 }
 
+public byte toByte()
+{    
+    if (q==1)
+    return 1;
+    return -1;
+}
+
 public int getValue()
 {
 return (3);

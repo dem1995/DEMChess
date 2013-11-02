@@ -2,6 +2,7 @@ import java.util.*;
 abstract class ChessPiece
 {
 protected int q;
+//PieceNames identity;
 public ChessPiece (int color)
 {
 q=color;
@@ -29,6 +30,8 @@ public int getColor()
 {
     return q;
 }
+
+
 public String getColorString()
 {
     if (getColor()==1)
@@ -38,6 +41,7 @@ public String getColorString()
     return "black";
     return null;
 }
+
 
 
 public boolean isWhite()

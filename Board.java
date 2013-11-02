@@ -1,3 +1,4 @@
+
 public class Board
 {
     private ChessPiece[][] bl;
@@ -85,6 +86,15 @@ public class Board
         }
         cheese+=("\n"+"\u2003\u2003a\u2003b\u2003c\u2003d\u2003e\u2003f\u2003g\u2003h");
         return cheese;
+    }
+    
+    public byte[] toBits()
+    {
+        byte[] board=new byte[64];
+        for (int x=0; x<bl.length; x++)
+        {     
+            return bl[x].toByte();
+        }
     }
     
     public String toString(int a)

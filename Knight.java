@@ -20,6 +20,12 @@ public int getValue()
 {
 return (3);
 }
+public byte toByte()
+{    
+    if (q==1)
+    return 1;
+    return -1;
+}
 
 public String toString()
 {

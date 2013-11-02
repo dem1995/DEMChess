@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.params=bytes\ encout
+comment0.target=byte[]\ convert(byte[],\ java.lang.String)
+comment1.params=enc
+comment1.target=java.lang.String\ getBOM(java.lang.String)
+numComments=2
