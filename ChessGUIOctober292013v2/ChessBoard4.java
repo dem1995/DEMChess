@@ -50,8 +50,8 @@ public class ChessBoard4 extends JFrame implements MouseListener, MouseMotionLis
     {
         super("Menu example");
 
-        farPieceFiles.set("Pokemon", "back");
-        nearPieceFiles.set("Pokemon", "front");
+        farPieceFiles.set("Pokémon", "back");
+        nearPieceFiles.set("Pokémon", "front");
         
               
         JMenu file = new JMenu("File");
