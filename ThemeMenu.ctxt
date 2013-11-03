@@ -1,6 +1,0 @@
-#BlueJ class context
-comment0.params=
-comment0.target=ThemeMenu()
-comment1.params=curDir
-comment1.target=java.util.ArrayList\ getFolders(java.io.File)
-numComments=2
