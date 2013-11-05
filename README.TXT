@@ -1,15 +1,16 @@
 PROJECT TITLE: DEMChess
 PURPOSE OF PROJECT: Chess Program
 VERSION or DATE: NOV1
-HOW TO START THIS PROJECT: Double-Click the JAR file. Make certain that one of the theme folders (the one you want
-to start first) is named "Pokémon", and that it is in the same directory as the JAR file.
+HOW TO START THIS PROJECT: Double-Click the JAR file. Make certain that at least one set of valid images in in the same directory as the JAR file.
 AUTHORS: David Estes McKnight
+
+Special thanks to Ryan Fernandes, for his UnicodeUtil class
 
 USER INSTRUCTIONS:
 
 To use your own image files, put them in a folder in the same directory as the JAR file. That folder will then show up in the "view-->themes" menu for the program.
 
-THIS PROGRAM WILL NOT WORK not work without at least one valid set of valid images named "Pokémon"
+THIS PROGRAM WILL NOT WORK not work without at least one valid set of valid images. Additionally, the program MAY FAIL IF an invalid set of images has an image with a proper name.
 
 Name images like so: "pawnwhite"
 

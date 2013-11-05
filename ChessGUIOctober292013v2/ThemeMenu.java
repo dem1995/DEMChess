@@ -13,24 +13,28 @@ public class ThemeMenu extends JMenu
         super("Piece Themes");
         setMnemonic('P');
         themeNames=getFolders(new File ("."));
-        
+
     }
 
-    
 
-       
     private static ArrayList<String> getFolders(File curDir)
-        {            
+    {            
         ArrayList<String> strings=new ArrayList<String>();
         File[] filesList = curDir.listFiles();
         for(File f : filesList){
             if(f.isDirectory())
-                strings.add(f.getName());
+                for (File g : f.listFiles())
+                if (g.getName().toLowerCase().contains("jpeg")||g.getName().toLowerCase().contains("png")||g.getName().toLowerCase().contains("gif"))
+                    if (g.getName().toLowerCase().contains("white")||g.getName().toLowerCase().contains("black"))
+                    {
+                     
+                        strings.add(f.getName());
+                        break;
+            }
         }
+
         return strings;
     }
-    
-    
-    
+
     
 }

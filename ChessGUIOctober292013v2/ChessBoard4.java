@@ -10,7 +10,7 @@ import java.io.PrintWriter;
 public class ChessBoard4 extends JFrame implements MouseListener, MouseMotionListener
 
 {    
-    
+
     private JPanel[][] pnlChessCells = new JPanel[8][8];
     private int intX;
     private int intY;
@@ -18,7 +18,7 @@ public class ChessBoard4 extends JFrame implements MouseListener, MouseMotionLis
     private boolean showIconDragging=false;
     private JPanel pnlMain = new JPanel(new GridLayout(8,8));
     public static Board board=new Board(new ChessPiece[8][8]).fillBoard();
-    public String theme="Pokemon";
+    public String theme;
     public PieceFileNames farPieceFiles=new PieceFileNames();
     public PieceFileNames nearPieceFiles=new PieceFileNames();
     boolean whiteFront=true;
@@ -46,19 +46,15 @@ public class ChessBoard4 extends JFrame implements MouseListener, MouseMotionLis
     }
 
     public ChessBoard4() 
-   
+
     {
         super("Menu example");
 
-        farPieceFiles.set("Pokémon", "back");
-        nearPieceFiles.set("Pokémon", "front");
-        
-              
         JMenu file = new JMenu("File");
         file.setMnemonic('F');
         JMenu view = new JMenu("View");        
         view.setMnemonic('V');
-        
+
         SaveMenuItem saveMenuItem=new SaveMenuItem(board);
         file.add(saveMenuItem);
         saveMenuItem.addSaveListener();
@@ -68,17 +64,21 @@ public class ChessBoard4 extends JFrame implements MouseListener, MouseMotionLis
         file.add(inputMenu);
         ///////////////
         view.add(themeMenu);
+        theme=themeMenu.themeNames.get(0);
+        farPieceFiles.set(theme, "back");
+        nearPieceFiles.set(theme, "front");
+
+        
         JMenuItem reverseItem=new JMenuItem("Reverse Board");
         view.add(reverseItem);
-        JMenuItem seeBorderDec=new JMenuItem("Toggle Border Decoration Visibility");
-        view.add (seeBorderDec);
+        JMenuItem decToggleItem=new JMenuItem("Toggle Decoration");
+        view.add (decToggleItem);
 
-        JMenuItem exitItem = new JMenuItem("Exit");
-        exitItem.setMnemonic('x');
+        ExitMenuItem exitItem= new ExitMenuItem();
         file.add(exitItem);
- 
+
         //adding action listener to menu items
-        
+
         newMenu.NewBoardItem.addActionListener(
             new ActionListener(){
                 public void actionPerformed(ActionEvent e)
@@ -87,64 +87,9 @@ public class ChessBoard4 extends JFrame implements MouseListener, MouseMotionLis
                     refreshChessPieces();
                 }
             }
-        );
-//         
-//         
-//          saveItem.addActionListener(
-//             new ActionListener(){
-//                 public void actionPerformed(ActionEvent e) 
-//                 {
-//                     String s = (String)JOptionPane.showInputDialog("What do you want to call your save file?");                   
-//                     String path=new File(".").getAbsolutePath();
-//                     path=path.substring(0, path.length()-1);
-//                     File testFile=new File(path+"saves");
-//                    // if (!testFile.isDirectory())
-//                     //testFile.mkdir();
-//                     System.out.println(testFile.getAbsolutePath());
-//                     File saveFile=new File(testFile.getAbsolutePath()+"saves\\"+s+".txt");
-//                     try{
-//                     PrintWriter pw = new PrintWriter(saveFile, s);
-//                     pw.print(board.toString());
-//                     pw.close(); 
-//                 }catch (Exception f)
-//                 {
-//                   //  throw new IOException();
-//                   try{
-//                     saveFile.createNewFile();
-//                 }
-//                 catch (Exception g)
-//                 {
-//                     System.out.println("File creation failed");
-//                 }
-//                     try{
-//                     PrintWriter pw = new PrintWriter(saveFile, s);
-//                     pw.print(board.toString());
-//                     pw.close();
-//                 }
-//                 catch (Exception h)
-//                 {
-//                     JOptionPane.showMessageDialog(new Frame(), "Sorry, the program has encountered an error when trying to save your file.");
-//                 }}
-//                     
-//                    //PrintWriter pw
-//                 }
-//             }
-//         );
-//         
-        
-        
+        );      
 
-        exitItem.addActionListener(
-            new ActionListener(){
-                public void actionPerformed(ActionEvent e)
-                {
-                    System.exit(0);
-                }
-            }
-        );       
-        
-      
-            reverseItem.addActionListener(
+        reverseItem.addActionListener(
             new ActionListener(){
                 public void actionPerformed(ActionEvent e)
                 {
@@ -153,20 +98,30 @@ public class ChessBoard4 extends JFrame implements MouseListener, MouseMotionLis
                 }
             }
         );
+
+        decToggleItem.addActionListener(
+            new ActionListener(){
+                public void actionPerformed(ActionEvent e)
+                {
+                    toggleWinDecoration();
+                }
+            }
+        );
+
         for (int i=0; i<themeMenu.themeNames.size(); i++)
         {
             JMenuItem george=new JMenuItem(themeMenu.themeNames.get(i));
             themeMenu.add(george);
             george.addActionListener(
-            new ActionListener(){
-                public void actionPerformed(ActionEvent e)
-                {
-                    theme=e.getActionCommand();
-                    farPieceFiles.set(theme, "back");
-                    nearPieceFiles.set(theme, "front");
-                    refreshChessPieces();
-                }
-            });
+                new ActionListener(){
+                    public void actionPerformed(ActionEvent e)
+                    {
+                        theme=e.getActionCommand();
+                        farPieceFiles.set(theme, "back");
+                        nearPieceFiles.set(theme, "front");
+                        refreshChessPieces();
+                    }
+                });
         }
         JMenuBar bar = new JMenuBar();
         setJMenuBar(bar);
@@ -175,26 +130,26 @@ public class ChessBoard4 extends JFrame implements MouseListener, MouseMotionLis
 
         bar.addMouseListener(new MouseAdapter()
 
-{
-   public void mousePressed(MouseEvent e)
-   {
-      winXPos=e.getX();
-      winYPos=e.getY();
-   }
-});
+            {
+                public void mousePressed(MouseEvent e)
+                {
+                    winXPos=e.getX();
+                    winYPos=e.getY();
+                }
+            });
         bar.addMouseMotionListener(new MouseAdapter()
-{
-     public void mouseDragged(MouseEvent mouseEvent)
-     {
-		//sets frame position when mouse dragged			
-		setLocation (mouseEvent.getXOnScreen()-winXPos,mouseEvent.getYOnScreen()-winYPos);
-					
-     }
-});
-       
-        setUndecorated(true);
+            {
+                public void mouseDragged(MouseEvent mouseEvent)
+                {
+                    //sets frame position when mouse dragged			
+                    setLocation (mouseEvent.getXOnScreen()-winXPos,mouseEvent.getYOnScreen()-winYPos);
+
+                }
+            });
+
+        setUndecorated(true);             
+
         c = getContentPane();
-        
         
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         Insets scnMax = Toolkit.getDefaultToolkit().getScreenInsets(getGraphicsConfiguration());
@@ -206,16 +161,15 @@ public class ChessBoard4 extends JFrame implements MouseListener, MouseMotionLis
         //setLocation(screenSize.width - getWidth(), screenSize.height - taskBarSize - getHeight());
         if(screenSize.height<screenSize.width)
         {
-        setBounds((int)(screenSize.width/2.0-(screenSize.height-barHeight)/2.0), 0, (int)(screenSize.height-barHeight), screenSize.height);
-        pnlMain.setBounds(0, 0, (int)(screenSize.height-barHeight), (int)(screenSize.height-barHeight));
-    }
+            setBounds((int)(screenSize.width/2.0-(screenSize.height-barHeight)/2.0), 0, (int)(screenSize.height-barHeight), screenSize.height);
+            pnlMain.setBounds(0, 0, (int)(screenSize.height-barHeight), (int)(screenSize.height-barHeight));
+        }
         else
         {
-        setBounds((int)(screenSize.width/2.0-(screenSize.height-barHeight)/2.0), 0,(int)(screenSize.width-barHeight), screenSize.width);
-        pnlMain.setBounds(0, 0, (int)(screenSize.width-barHeight), (int)(screenSize.width-barHeight));
-    }
-        
-        
+            setBounds((int)(screenSize.width/2.0-(screenSize.height-barHeight)/2.0), 0,(int)(screenSize.width-barHeight), screenSize.width);
+            pnlMain.setBounds(0, 0, (int)(screenSize.width-barHeight), (int)(screenSize.width-barHeight));
+        }
+
         
         //setBounds(100, 100, 740, 760);
         setBackground(Color.GRAY);
@@ -223,9 +177,7 @@ public class ChessBoard4 extends JFrame implements MouseListener, MouseMotionLis
         setTitle("David Estes McKnight's Chess");
         setResizable(true);
         setLayout(null);    
-        
-        
-        
+
         
         pnlMain.setBackground(Color.WHITE);
         add(pnlMain);
@@ -288,19 +240,19 @@ public class ChessBoard4 extends JFrame implements MouseListener, MouseMotionLis
         JLabel PieceLabel;
         if (whiteFront)
         {
-        if (piece.getColor()==1)          
-         return new JLabel (new ImageIcon(nearPieceFiles.get(piece.getColorString()+piece.getClass().toString().substring(6))));         
-        else if (piece.getColor()==2)
-         return new JLabel (new ImageIcon(farPieceFiles.get(piece.getColorString()+piece.getClass().toString().substring(6))));
+            if (piece.getColor()==1)          
+                return new JLabel (new ImageIcon(nearPieceFiles.get(piece.getColorString()+piece.getClass().toString().substring(6))));         
+            else if (piece.getColor()==2)
+                return new JLabel (new ImageIcon(farPieceFiles.get(piece.getColorString()+piece.getClass().toString().substring(6))));
         }
         else
         {
-        if (piece.getColor()==1)          
-         return new JLabel (new ImageIcon(farPieceFiles.get(piece.getColorString()+piece.getClass().toString().substring(6))));         
-        else if (piece.getColor()==2)
-         return new JLabel (new ImageIcon(nearPieceFiles.get(piece.getColorString()+piece.getClass().toString().substring(6))));
+            if (piece.getColor()==1)          
+                return new JLabel (new ImageIcon(farPieceFiles.get(piece.getColorString()+piece.getClass().toString().substring(6))));         
+            else if (piece.getColor()==2)
+                return new JLabel (new ImageIcon(nearPieceFiles.get(piece.getColorString()+piece.getClass().toString().substring(6))));
         }
-        
+
         return new JLabel ("");
 
     }
@@ -320,32 +272,31 @@ public class ChessBoard4 extends JFrame implements MouseListener, MouseMotionLis
 
             {                
                 this.pnlChessCells[y][x].removeAll();
-                 if (whiteFront)
-                this.pnlChessCells[y][x].add(this.getPieceObject(this.board.getPiece(pointtoString((y),(x)))), BorderLayout.CENTER);
+                if (whiteFront)
+                    this.pnlChessCells[y][x].add(this.getPieceObject(this.board.getPiece(pointtoString((y),(x)))), BorderLayout.CENTER);
                 else
-                this.pnlChessCells[y][x].add(this.getPieceObject(this.board.getPiece(pointtoString((7-y),(7-x)))), BorderLayout.CENTER);
+                    this.pnlChessCells[y][x].add(this.getPieceObject(this.board.getPiece(pointtoString((7-y),(7-x)))), BorderLayout.CENTER);
                 this.pnlChessCells[y][x].validate();
         }          
         System.out.println(board.toString());
-        
+
     }
-    
+
     private void firstDraw()
     {
-        
+
         for (int i=0; i<64; i++)
         {
             pnlChessCells[i/8][i%8]=new JPanel(new BorderLayout());
             pnlChessCells[i/8][i%8].addMouseListener(this);
             pnlMain.add(pnlChessCells[i/8][i%8]);
             if ((i+i/8)%2==0)
-            pnlChessCells[i/8][i%8].setBackground(Color.WHITE);
+                pnlChessCells[i/8][i%8].setBackground(Color.WHITE);
             else
-            pnlChessCells[i/8][i%8].setBackground(Color.DARK_GRAY);
+                pnlChessCells[i/8][i%8].setBackground(Color.DARK_GRAY);
         }
-              
-    }
 
+    }
 
 
     public void mouseEntered(MouseEvent e){
@@ -353,14 +304,14 @@ public class ChessBoard4 extends JFrame implements MouseListener, MouseMotionLis
         JPanel pnlTemp = (JPanel)source;
         if (whiteFront)
         {
-        intX = (int)(pnlTemp.getX()/pnlTemp.getWidth());
-        intY = (int)(pnlTemp.getY()/pnlTemp.getHeight());
-    }
-    else
-    {
-        intX = 7-(int)(pnlTemp.getX()/98.0*1.1);
-        intY = 7-(int)(pnlTemp.getY()/98.0*1.115);
-    }
+            intX = (int)(pnlTemp.getX()/pnlTemp.getWidth());
+            intY = (int)(pnlTemp.getY()/pnlTemp.getHeight());
+        }
+        else
+        {
+            intX = 7-(int)(pnlTemp.getX()/98.0*1.1);
+            intY = 7-(int)(pnlTemp.getY()/98.0*1.115);
+        }
     }
 
     public void mouseExited(MouseEvent e){}  
@@ -373,17 +324,17 @@ public class ChessBoard4 extends JFrame implements MouseListener, MouseMotionLis
             if (inputMenu.inputMethod.equals("dnd"))
             {
                 showIconDragging=true;
-                
+
                 this.pntMoveFrom = new Point (intX, intY);
                 System.out.println(this.board.getPiece(intX, 7-intY).getColorString()+this.board.getPiece(intX, 7-intY).getClass().toString().substring(6));
                 try{
-                Image image = nearPieceFiles.get(this.board.getPiece(intX, 7-intY).getColorString()+this.board.getPiece(intX, 7-intY).getClass().toString().substring(6));
-                //Image image = toolkit.getImage(nearPieceFiles.get(this.board.getPiece(intX, intY).getColorString()+this.board.getPiece(intX, intY).getClass().toString().substring(6)));
-                Cursor c = toolkit.createCustomCursor(image, new Point(10, 10), "img");                
-                this.setCursor (c);
-            }
-            catch (Exception f)
-            {};
+                    Image image = nearPieceFiles.get(this.board.getPiece(intX, 7-intY).getColorString()+this.board.getPiece(intX, 7-intY).getClass().toString().substring(6));
+                    //Image image = toolkit.getImage(nearPieceFiles.get(this.board.getPiece(intX, intY).getColorString()+this.board.getPiece(intX, intY).getClass().toString().substring(6)));
+                    Cursor c = toolkit.createCustomCursor(image, new Point(10, 10), "img");                
+                    this.setCursor (c);
+                }
+                catch (Exception f)
+                {};
                 moveFromisDone=true;
         }
     }
@@ -421,7 +372,7 @@ public class ChessBoard4 extends JFrame implements MouseListener, MouseMotionLis
             else
             {
                 if (moveFromisDone)
-                   {
+                {
                     pnlChessCells[pntMoveFrom.y][pntMoveFrom.x].setBorder(BorderFactory.createEmptyBorder());
                     this.pntMoveTo=new Point (intX, intY);                    
                     String start=pointtoString(pntMoveFrom.y, pntMoveFrom.x);
@@ -444,5 +395,11 @@ public class ChessBoard4 extends JFrame implements MouseListener, MouseMotionLis
     }
 
     public void mouseDragged(MouseEvent e) {
+    }
+
+    public void toggleWinDecoration(){
+        dispose();
+        setUndecorated(!isUndecorated());
+        setVisible(true);
     }
 }
