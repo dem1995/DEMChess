@@ -64,9 +64,12 @@ public class ChessBoard4 extends JFrame implements MouseListener, MouseMotionLis
         file.add(inputMenu);
         ///////////////
         view.add(themeMenu);
+        try{
         theme=themeMenu.themeNames.get(0);
         farPieceFiles.set(theme, "back");
         nearPieceFiles.set(theme, "front");
+    }
+    catch (Exception error){};
 
         
         JMenuItem reverseItem=new JMenuItem("Reverse Board");
@@ -201,8 +204,8 @@ public class ChessBoard4 extends JFrame implements MouseListener, MouseMotionLis
 
         JPanel pnlTemp = (JPanel)source; 
         System.out.println(pnlTemp.getWidth());
-        int intX = (int)(pnlTemp.getX()/pnlTemp.getWidth());
-        int intY = (int)(pnlTemp.getY()/pnlTemp.getHeight());
+        //int intX = (int)(pnlTemp.getX()/pnlTemp.getWidth());
+       // int intY = (int)(pnlTemp.getY()/pnlTemp.getHeight());
         if (newMenu.apple)
         {
             String fin=pointtoString(intY, intX);
@@ -238,6 +241,7 @@ public class ChessBoard4 extends JFrame implements MouseListener, MouseMotionLis
     private JLabel getPieceObject(ChessPiece piece)
     {
         JLabel PieceLabel;
+        try{
         if (whiteFront)
         {
             if (piece.getColor()==1)          
@@ -252,7 +256,7 @@ public class ChessBoard4 extends JFrame implements MouseListener, MouseMotionLis
             else if (piece.getColor()==2)
                 return new JLabel (new ImageIcon(nearPieceFiles.get(piece.getColorString()+piece.getClass().toString().substring(6))));
         }
-
+    }catch (Exception e){};
         return new JLabel ("");
 
     }
