@@ -313,8 +313,8 @@ public class ChessBoard4 extends JFrame implements MouseListener, MouseMotionLis
         }
         else
         {
-            intX = 7-(int)(pnlTemp.getX()/98.0*1.1);
-            intY = 7-(int)(pnlTemp.getY()/98.0*1.115);
+            intX = 7-(int)(pnlTemp.getX()/pnlTemp.getWidth());
+            intY = 7-(int)(pnlTemp.getY()/pnlTemp.getHeight());
         }
     }
 
@@ -377,7 +377,10 @@ public class ChessBoard4 extends JFrame implements MouseListener, MouseMotionLis
             {
                 if (moveFromisDone)
                 {
+                    if (whiteFront)
                     pnlChessCells[pntMoveFrom.y][pntMoveFrom.x].setBorder(BorderFactory.createEmptyBorder());
+                    else
+                    pnlChessCells[7-pntMoveFrom.y][7-pntMoveFrom.x].setBorder(BorderFactory.createEmptyBorder());
                     this.pntMoveTo=new Point (intX, intY);                    
                     String start=pointtoString(pntMoveFrom.y, pntMoveFrom.x);
                     String fin=pointtoString(pntMoveTo.y, pntMoveTo.x);
@@ -388,7 +391,10 @@ public class ChessBoard4 extends JFrame implements MouseListener, MouseMotionLis
                 else
                 {
                     this.pntMoveFrom=new Point (intX, intY);
+                    if (whiteFront)
                     pnlChessCells[intY][intX].setBorder(BorderFactory.createLineBorder(Color.green));
+                    else
+                    pnlChessCells[7-intY][7-intX].setBorder(BorderFactory.createLineBorder(Color.green));
                     moveFromisDone=true;
                 }
         }
