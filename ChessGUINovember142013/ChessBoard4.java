@@ -347,7 +347,7 @@ public class ChessBoard4 extends JFrame implements MouseListener, MouseMotionLis
     {
         if(this.getCursor().getName().equals("img"))
         {
-            this.setCursor(DEFAULT_CURSOR);
+            this.setCursor(Cursor.DEFAULT_CURSOR);
         }
         if(!newMenu.apple)
             if (inputMenu.inputMethod.equals("dnd"))

@@ -16,8 +16,17 @@ public class Board
                 this.bl[(start.charAt(0)-97)][start.charAt(1)-49]=new Space(0);
             }
             catch (Exception e){}
-        }
+        }  
+        //this.getPiece(start).identity
     }
+    
+    
+    public boolean canMove(ChessPiece start, ChessPiece finish)
+    {
+       return true; 
+     }
+    
+
 
     public ChessPiece getPiece (String a)
     {
@@ -34,7 +43,7 @@ public class Board
 
     public ChessPiece makePiece (String a)
     {
-        ChessPiece q=new Space(0);
+        ChessPiece q;
         switch (a.charAt(1))
         {
             case 'P':
@@ -55,6 +64,8 @@ public class Board
             case 'K':
             case 'k': q=new King  ((int)a.charAt(2)-48);
             break;
+            default:
+            q=new Space(0);
         }
         return q;
     }
@@ -124,6 +135,10 @@ public class Board
             for (int letter=0; letter<q[number].length; letter++)
                 q[letter][number]=new Pawn(2);
         return new Board(q);
+    }
+    
+    public void giveLocation()
+    {
     }
 
     }

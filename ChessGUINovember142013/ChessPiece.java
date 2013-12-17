@@ -8,10 +8,6 @@ public ChessPiece (int color)
 q=color;
 identity|=color;
 }
-public ChessPiece (int pieceType, int color)
-{
-    
-}
 
 public char getChar ()
 {
@@ -30,10 +26,9 @@ return true;
 else 
 return false;
 }
-
 public int getColor()
 {
-    return q;
+    return identity&0b11;
 }
 public String getColorString()
 {
@@ -48,15 +43,19 @@ public String getColorString()
 
 public boolean isWhite()
 {
-if (q==1)
+if ((identity&0b11)==1)
 return true;
 else 
 return false; 
 }
+
+
 
 public PieceNames enumVal()
 {
     return PieceNames.valueOf(this.getClass().toString().substring(6).toUpperCase());
 
 }
+
+
 }

@@ -1,6 +1,6 @@
 PROJECT TITLE: DEMChess
 PURPOSE OF PROJECT: Chess Program
-VERSION or DATE: NOV1
+VERSION or DATE: NOV14
 HOW TO START THIS PROJECT: Double-Click the JAR file. Make certain that at least one set of valid images in in the same directory as the JAR file.
 AUTHORS: David Estes McKnight
 
