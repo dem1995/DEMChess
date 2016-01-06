@@ -7,7 +7,6 @@
 
 public class Queen extends ChessPiece implements PieceFace
 {
-private int q;
 public Queen (int color)
 {
 super(color);
@@ -17,7 +16,7 @@ identity|=8;
 
 public char getChar ()
 {
-if (super.q==1)
+if (color==1)
                 return('\u2655');
             else
                 return('\u265b');

@@ -24,7 +24,7 @@ identity|=64;
 
 public char getChar ()
 {
-if (super.q==1)
+if (color==1)
 return('\u2657');
 else
 return('\u265d');

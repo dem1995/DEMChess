@@ -13,7 +13,7 @@ identity|=128;
 
 public char getChar ()
 {
-if (super.q==1)
+if (color==1)
 return('\u2659');
 else
 return('\u265f');

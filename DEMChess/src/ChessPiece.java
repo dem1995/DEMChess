@@ -6,11 +6,11 @@
  */
 abstract class ChessPiece
 {
-protected int q;
+protected int color;
 int identity;
 public ChessPiece (int color)
 {
-q=color;
+this.color=color;
 identity|=color;
 }
 
@@ -26,15 +26,17 @@ return (0);
 
 public boolean equals(ChessPiece c)
 {
-if (this.q==c.q)
+if (this.color==c.color)
 return true;
 else 
 return false;
 }
+
 public int getColor()
 {
     return identity&0b11;
 }
+
 public String getColorString()
 {
     if (getColor()==1)

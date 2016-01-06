@@ -5,7 +5,6 @@
  */
 public class Space extends ChessPiece implements PieceFace
 {
-private int q;
 public Space (int color)
 {
 super(color);

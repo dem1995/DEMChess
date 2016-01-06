@@ -5,7 +5,6 @@
  */
 public class King extends ChessPiece implements PieceFace
 {
-private int q;
 public King (int color)
 {
 super(color);
@@ -14,7 +13,7 @@ identity|=4;
 
 public char getChar ()
 {
-if (super.q==1)
+if (color==1)
 return('\u2654');
 else
 return('\u265a');
