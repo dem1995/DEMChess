@@ -4,7 +4,7 @@
  * @author David McKnight
  * @version 12/22/2015
  */
-public class Bishop extends ChessPiece implements PieceFace
+public class Bishop extends ChessPiece
 {
 // private int[][] q=new int[32][];
 // int a=0;

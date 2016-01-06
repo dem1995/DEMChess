@@ -4,24 +4,25 @@
  * @author David McKnight
  * @version 12/22/2015
  */
-abstract class ChessPiece
+abstract class ChessPiece implements PieceFace
 {
+	
+
+/**
+ * The color of the piece
+ */
 protected int color;
-int identity;
+
+/**
+ * The bits of this byte express the piece's identity exactly (type of piece, color). To be used in the future for optimization.
+ */
+byte identity;
+
+
 public ChessPiece (int color)
 {
 this.color=color;
 identity|=color;
-}
-
-public char getChar ()
-{
-return('0');
-}
-
-public int getValue()
-{
-return (0);
 }
 
 public boolean equals(ChessPiece c)

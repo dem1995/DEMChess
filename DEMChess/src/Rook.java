@@ -3,7 +3,7 @@
  * @author David McKnight
  * @version 12/22/2015
  */
-public class Rook extends ChessPiece implements PieceFace
+public class Rook extends ChessPiece
 {
 public Rook (int color)
 {

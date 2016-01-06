@@ -5,7 +5,7 @@
  * @version 12/22/2015
  */
 
-public class Queen extends ChessPiece implements PieceFace
+public class Queen extends ChessPiece
 {
 public Queen (int color)
 {

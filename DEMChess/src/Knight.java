@@ -3,7 +3,7 @@
  * @author David McKnight
  * @version 12/22/2015
  */
-public class Knight extends ChessPiece implements PieceFace
+public class Knight extends ChessPiece
 {
 public Knight (int color)
 {

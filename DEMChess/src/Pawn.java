@@ -3,7 +3,7 @@
  * @author David McKnight
  * @version 12/22/2015
  */
-public class Pawn extends ChessPiece implements PieceFace
+public class Pawn extends ChessPiece
 {
 public Pawn (int color)
 {

@@ -3,8 +3,9 @@
  * @author David McKnight
  * @version 12/22/2015
  */
-public class King extends ChessPiece implements PieceFace
+public class King extends ChessPiece
 {
+	
 public King (int color)
 {
 super(color);

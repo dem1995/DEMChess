@@ -3,7 +3,7 @@
  * @author David McKnight
  * @version 12/22/2015
  */
-public class Space extends ChessPiece implements PieceFace
+public class Space extends ChessPiece
 {
 public Space (int color)
 {

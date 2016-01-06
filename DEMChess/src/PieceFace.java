@@ -17,5 +17,5 @@ public interface PieceFace
      */
     public int getValue();
     
-    
-}
+
+    }
