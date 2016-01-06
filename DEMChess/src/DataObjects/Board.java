@@ -15,8 +15,8 @@ public class Board
 
     public void movePiece (String start, String finish)
     {
-        if (this.getPiece(start).getValue()!=0&&!(this.getPiece(start).equals(this.getPiece(finish))||
-            this.getPiece(start).equals(this.getPiece(finish))))
+        if (this.getPiece(start).getValue()!=0&&!(this.getPiece(start).hasSameColorAs(this.getPiece(finish))||
+            this.getPiece(start).hasSameColorAs(this.getPiece(finish))))
         {
             this.bl[(finish.charAt(0)-97)][finish.charAt(1)-49]=this.getPiece(start);
             try{

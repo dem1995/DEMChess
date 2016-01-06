@@ -17,9 +17,4 @@ public interface PieceFace
      * @return The default point value for the ChessPiece using this PieceFace
      */
     public int getValue();
-    
-    /**
-     * @return The basic name of the piece (i.e.: a knight would return "Knight")
-     */
-    public String getName();
     }

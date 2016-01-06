@@ -7,6 +7,9 @@ package DataObjects;
  */
 public abstract class ChessPiece implements PieceFace
 {
+	/**
+	 * The name of the piece (for a bishop this would be "Bishop", for a knight, this woule be "Knight", etc.).
+	 */
 	String name;
 
 	/**
@@ -33,7 +36,7 @@ public abstract class ChessPiece implements PieceFace
 		this.name=name;
 	}
 
-	public boolean equals(ChessPiece c)
+	public boolean hasSameColorAs(ChessPiece c)
 	{
 		if (this.color==c.color)
 			return true;
@@ -60,17 +63,6 @@ public abstract class ChessPiece implements PieceFace
 	{
 		return name;
 	}
-
-
-	public boolean isWhite()
-	{
-		if ((identity&0b11)==1)
-			return true;
-		else 
-			return false; 
-	}
-
-
 
 	public PieceNames enumVal()
 	{
