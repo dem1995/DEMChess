@@ -1,3 +1,4 @@
+package DataObjects;
 /**
  * Enumeration of the pieces. Currently unused
  * 

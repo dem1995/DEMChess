@@ -1,3 +1,4 @@
+package DataObjects;
 
 /**
  * An interface that describes all methods that are unique to each piece, but that each require.
@@ -17,5 +18,8 @@ public interface PieceFace
      */
     public int getValue();
     
-
+    /**
+     * @return The basic name of the piece (i.e.: a knight would return "Knight")
+     */
+    public String getName();
     }

@@ -4,6 +4,8 @@ import java.net.*;
 import javax.swing.*;
 
 import java.awt.event.*;
+
+import DataObjects.*;
 /**
  * The ChessBoard4 Class (so named because it is the fourth version of the ChessBoard class) is the class that handles all user inputs, as well as the class that handles rendering all graphical components to the screen. 
  * @author David McKnight
@@ -268,16 +270,16 @@ public class ChessBoard4 extends JFrame implements MouseListener, MouseMotionLis
         if (whiteFront)
         {
             if (piece.getColor()==1)          
-                return new JLabel (new ImageIcon(nearPieceFiles.get(piece.getColorString()+piece.getClass().toString().substring(6))));         
+                return new JLabel (new ImageIcon(nearPieceFiles.get(piece.getColorString()+piece.getName())));         
             else if (piece.getColor()==2)
-                return new JLabel (new ImageIcon(farPieceFiles.get(piece.getColorString()+piece.getClass().toString().substring(6))));
+                return new JLabel (new ImageIcon(farPieceFiles.get(piece.getColorString()+piece.getName())));
         }
         else
         {
             if (piece.getColor()==1)          
-                return new JLabel (new ImageIcon(farPieceFiles.get(piece.getColorString()+piece.getClass().toString().substring(6))));         
+                return new JLabel (new ImageIcon(farPieceFiles.get(piece.getColorString()+piece.getName())));         
             else if (piece.getColor()==2)
-                return new JLabel (new ImageIcon(nearPieceFiles.get(piece.getColorString()+piece.getClass().toString().substring(6))));
+                return new JLabel (new ImageIcon(nearPieceFiles.get(piece.getColorString()+piece.getName())));
         }
     }catch (Exception e){};
         return new JLabel ("");
@@ -353,9 +355,9 @@ public class ChessBoard4 extends JFrame implements MouseListener, MouseMotionLis
                 showIconDragging=true;
 
                 this.pntMoveFrom = new Point (intX, intY);
-                System.out.println(this.board.getPiece(intX, 7-intY).getColorString()+this.board.getPiece(intX, 7-intY).getClass().toString().substring(6));
+                System.out.println(this.board.getPiece(intX, 7-intY).getColorString()+this.board.getPiece(intX, 7-intY).getName());
                 try{
-                    Image image = nearPieceFiles.get(this.board.getPiece(intX, 7-intY).getColorString()+this.board.getPiece(intX, 7-intY).getClass().toString().substring(6));
+                    Image image = nearPieceFiles.get(this.board.getPiece(intX, 7-intY).getColorString()+this.board.getPiece(intX, 7-intY).getName());
                     //Image image = toolkit.getImage(nearPieceFiles.get(this.board.getPiece(intX, intY).getColorString()+this.board.getPiece(intX, intY).getClass().toString().substring(6)));
                     Cursor c = toolkit.createCustomCursor(image, new Point(10, 10), "img");                
                     this.setCursor (c);

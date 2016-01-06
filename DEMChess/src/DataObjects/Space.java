@@ -1,3 +1,4 @@
+package DataObjects;
 /**
  * The class of the Space chess piece (for the sake of avoiding having separate move/take methods, as well as to simplify the structure of Board, space is considered a piece as well)
  * @author David McKnight
@@ -5,19 +6,19 @@
  */
 public class Space extends ChessPiece
 {
-public Space (int color)
-{
-super(color);
-}
+	public Space (int color)
+	{
+		super(color, 0, "Space");
+	}
 
-public char getChar ()
-{
-return('\u2003');
-}
+	public char getChar ()
+	{
+		return('\u2003');
+	}
 
-public int getValue()
-{
-return (0);
-}
+	public int getValue()
+	{
+		return (0);
+	}
 
 }

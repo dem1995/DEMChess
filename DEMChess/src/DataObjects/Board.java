@@ -1,3 +1,4 @@
+package DataObjects;
 
 /**
  * The data object that holds information regarding the chess board and its pieces. At its core, contains a 2D array of Piece objects
