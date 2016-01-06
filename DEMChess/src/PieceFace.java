@@ -7,8 +7,14 @@
 public interface PieceFace
 {
     
+    /**
+     * @return The default Unicode character for the ChessPiece using this PieceFace
+     */
     public char getChar();
     
+    /**
+     * @return The default point value for the ChessPiece using this PieceFace
+     */
     public int getValue();
     
     
