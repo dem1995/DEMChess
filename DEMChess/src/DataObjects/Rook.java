@@ -8,7 +8,7 @@ public class Rook extends ChessPiece
 {
 	public Rook (int color)
 	{
-		super(color, 16, "Rook");
+		super(color, 16);
 	}
 
 	public char getChar ()

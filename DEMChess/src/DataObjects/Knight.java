@@ -8,7 +8,7 @@ public class Knight extends ChessPiece
 {
 	public Knight (int color)
 	{
-		super (color, 32, "Knight");
+		super (color, 64);
 	}
 
 

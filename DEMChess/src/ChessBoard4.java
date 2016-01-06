@@ -21,7 +21,7 @@ public class ChessBoard4 extends JFrame implements MouseListener, MouseMotionLis
     private boolean moveFromisDone=false;
     private boolean showIconDragging=false;
     private JPanel pnlMain = new JPanel(new GridLayout(8,8));
-    public static Board board=new Board(new ChessPiece[8][8]).fillBoard();
+    public static Board board=Board.makeAndFillABoard();
     public String theme;
     /**
      * Filenames for the images representing the pieces
@@ -111,7 +111,7 @@ public class ChessBoard4 extends JFrame implements MouseListener, MouseMotionLis
             new ActionListener(){
                 public void actionPerformed(ActionEvent e)
                 {
-                    board=new Board(new ChessPiece[8][8]).fillBoard();
+                    board=Board.makeAndFillABoard();
                     refreshChessPieces();
                 }
             }

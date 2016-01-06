@@ -7,10 +7,11 @@ package DataObjects;
  */
 public class Board
 {
-    private ChessPiece[][] bl;
+    private ChessPiece[][] pieceArray;
+    
     public Board (ChessPiece[][] b)
     {
-        bl=b;
+        pieceArray=b;
     }
 
     public void movePiece (String start, String finish)
@@ -18,9 +19,9 @@ public class Board
         if (this.getPiece(start).getValue()!=0&&!(this.getPiece(start).hasSameColorAs(this.getPiece(finish))||
             this.getPiece(start).hasSameColorAs(this.getPiece(finish))))
         {
-            this.bl[(finish.charAt(0)-97)][finish.charAt(1)-49]=this.getPiece(start);
+            this.pieceArray[(finish.charAt(0)-97)][finish.charAt(1)-49]=this.getPiece(start);
             try{
-                this.bl[(start.charAt(0)-97)][start.charAt(1)-49]=new Space(0);
+                this.pieceArray[(start.charAt(0)-97)][start.charAt(1)-49]=new Space(0);
             }
             catch (Exception e){}
         }  
@@ -40,12 +41,12 @@ public class Board
         if (a.charAt(0)=='m'||a.charAt(0)=='M')
             return makePiece(a);
         else
-            return this.bl[(a.charAt(0)-97)][a.charAt(1)-49];
+            return this.pieceArray[(a.charAt(0)-97)][a.charAt(1)-49];
     }
 
     public ChessPiece getPiece (int x, int y)
     {
-        return this.bl[x][y];
+        return this.pieceArray[x][y];
     }
 
     public ChessPiece makePiece (String a)
@@ -75,6 +76,40 @@ public class Board
             q=new Space(0);
         }
         return q;
+    }
+    
+    public byte[] toByteArray()
+    {
+    	byte[] boardAsByteArray=new byte[64];
+    	int i=0;
+    	for (int y=0; y<8; y++)   		
+    		for(int x=0; x<8; x++)
+    		{
+    			boardAsByteArray[i]=pieceArray[x][y].identity;
+    			i++;
+    		}
+    	return boardAsByteArray;
+    }
+    
+    public static Board fromByteArray(byte[] byteArray)
+    {
+    	ChessPiece[][] pieces=new ChessPiece[8][8];
+    	for (int i=0; i<byteArray.length; i++)
+    	{
+    		int color;
+    		byte thisByte=byteArray[i];
+    		color=0b11&thisByte;
+    		switch (0b11111100&thisByte)
+    		{
+    		case 4: pieces[i%8][i/8]=new King(color);
+    		case 8: pieces[i%8][i/8]=new Queen(color);
+    		case 16: pieces[i%8][i/8]=new Rook(color);
+    		case 32: pieces[i%8][i/8]=new Bishop(color);
+    		case 64: pieces[i%8][i/8]=new Knight(color);
+    		case 128: pieces[i%8][i/8]=new Pawn(color);
+    		}
+    	}
+    	return new Board(pieces);
     }
 
     public String toString()
@@ -113,7 +148,7 @@ public class Board
         return toString2();
     }
     
-    public Board fillBoard()
+    public static Board makeAndFillABoard()
     {
         ChessPiece[][] q=new ChessPiece [8][8];
         q[0][7]=new Rook(2);

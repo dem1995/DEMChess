@@ -8,7 +8,7 @@ public class Space extends ChessPiece
 {
 	public Space (int color)
 	{
-		super(color, 0, "Space");
+		super(color, 0);
 	}
 
 	public char getChar ()

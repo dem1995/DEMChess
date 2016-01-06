@@ -15,7 +15,7 @@ public class Bishop extends ChessPiece
 	public Bishop (int color)
 	
 	{
-		super(color, 64, "Bishop");
+		super(color, 32);
 	}
 
 	public char getChar ()

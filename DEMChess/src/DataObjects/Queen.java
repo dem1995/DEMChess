@@ -10,7 +10,7 @@ public class Queen extends ChessPiece
 {
 	public Queen (int color)
 	{
-		super(color, 8, "Queen");
+		super(color, 8);
 	}
 
 

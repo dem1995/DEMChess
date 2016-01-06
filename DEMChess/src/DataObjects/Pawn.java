@@ -8,7 +8,7 @@ public class Pawn extends ChessPiece
 {
 	public Pawn (int color)
 	{
-		super (color, 128, "Pawn");
+		super (color, 128);
 	}
 
 	public char getChar ()

@@ -9,7 +9,7 @@ public class King extends ChessPiece
 	
 	public King (int color)
 	{
-		super(color, 4, "King");
+		super(color, 4);
 	}
 
 	public char getChar ()
