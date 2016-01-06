@@ -80,9 +80,9 @@ public class ChessBoard4 extends JFrame implements MouseListener, MouseMotionLis
         JMenu view = new JMenu("View");        
         view.setMnemonic('V');
 
-        SaveMenuItem saveMenuItem=new SaveMenuItem(board);
-        file.add(saveMenuItem);
-        saveMenuItem.addSaveListener();
+        SaveMenu saveMenu=new SaveMenu(board);
+        file.add(saveMenu);
+        
         ////////////////
         file.add(newMenu);
         ////////////////

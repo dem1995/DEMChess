@@ -1,3 +1,4 @@
+import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
 import java.awt.event.*;
@@ -14,7 +15,7 @@ import java.io.FileOutputStream;
  * @author David McKnight
  * @version 12/22/2015
  */
-public class SaveMenuItem extends JMenuItem
+public class SaveMenu extends JMenu
 {
     // instance variables - replace the example below with your own
     private int x;
@@ -24,32 +25,40 @@ public class SaveMenuItem extends JMenuItem
      * Constructor for objects of class SaveMenu
      * @param board The board to be saved
      */
-    public SaveMenuItem(Board board)
+    public SaveMenu(Board board)
     {
         super("Save");
         this.board=board;
-    }
-
-    public void addSaveListener()
-    {
-        addActionListener(
-            new ActionListener(){
-                public void actionPerformed(ActionEvent e) 
-                {
-                    String fileName = JOptionPane.showInputDialog("What do you want to call your save file?");                   
-                    try
+        //This JMenuItem saves the board in a human-readable format
+        JMenuItem saveHumanReadable= new JMenuItem("Human-Readable");
+        add(saveHumanReadable);
+        //This JMenuItem saves the board in a compact, 64-byte format (one byte for each piece)
+        JMenuItem saveBytes= new JMenuItem("64-byte file");
+        add(saveBytes);
+        
+        //Adding the actionListener to the option to save the board as a human-readable file
+        saveHumanReadable.addActionListener(
+                new ActionListener(){
+                    public void actionPerformed(ActionEvent e) 
                     {
-                    printTo(fileName);
+                        String fileName = JOptionPane.showInputDialog("What do you want to call your save file?");                   
+                        try
+                        {
+                        printTo(fileName);
+                    }
+                    catch(IOException f){
+                        System.out.println("File creation failed");
+                    }
+                   
                 }
-                catch(IOException f){
-                    System.out.println("File creation failed");
                 }
-               
-            }
-            }
-        );
-
+            );
+        
+       
+        
     }
+
+  
 //     public void addSaveListenerByte()
 //     {
 //         addActionListener(
