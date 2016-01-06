@@ -5,7 +5,6 @@
  */
 public class Pawn extends ChessPiece implements PieceFace
 {
-final private int[][] attackRange={{1,1},{-1,1}};
 public Pawn (int color)
 {
 super (color);
@@ -26,8 +25,4 @@ public int getValue()
 return (1);
 }
 
-public int[][] getAttackRange()
-{
-return attackRange;
-}
 }

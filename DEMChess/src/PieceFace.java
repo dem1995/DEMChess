@@ -1,6 +1,6 @@
 
 /**
- * The interface that makes it so that all pieces will require these two methods.
+ * An interface that describes all methods that are unique to each piece, but that each require.
  * @author David McKnight
  * @version 12/22/2015
  */

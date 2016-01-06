@@ -143,9 +143,6 @@ public class Board
         return new Board(q);
     }
     
-    public void giveLocation()
-    {
-    }
 
     }
 
