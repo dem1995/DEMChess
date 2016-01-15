@@ -93,21 +93,37 @@ public class Board
     
     public static Board fromByteArray(byte[] byteArray)
     {
+    	for (int i=0; i<byteArray.length; i++)
+    	{
+    		System.out.println(Integer.toString(Byte.toUnsignedInt(byteArray[i]), 2));
+    	}
     	ChessPiece[][] pieces=new ChessPiece[8][8];
+    	System.out.print(byteArray.length);
     	for (int i=0; i<byteArray.length; i++)
     	{
     		int color;
     		byte thisByte=byteArray[i];
     		color=0b11&thisByte;
+    		System.out.println(color);
     		switch (0b11111100&thisByte)
     		{
+    		case 0: pieces[i%8][i/8]=new Space(color);
+    		break;
     		case 4: pieces[i%8][i/8]=new King(color);
+    		break;
     		case 8: pieces[i%8][i/8]=new Queen(color);
+    		break;
     		case 16: pieces[i%8][i/8]=new Rook(color);
+    		break;
     		case 32: pieces[i%8][i/8]=new Bishop(color);
+    		break;
     		case 64: pieces[i%8][i/8]=new Knight(color);
+    		break;
     		case 128: pieces[i%8][i/8]=new Pawn(color);
+    		break;
     		}
+        	System.out.print(pieces[i%8][i/8].getChar());
+
     	}
     	return new Board(pieces);
     }
@@ -146,6 +162,16 @@ public class Board
         return toString();
         else
         return toString2();
+    }
+    
+    public ChessPiece[][] getPieceArray()
+    {
+    	return pieceArray;
+    }
+    
+    public void setPieceArray(ChessPiece[][] pieces)
+    {
+    	pieceArray=pieces;
     }
     
     public static Board makeAndFillABoard()

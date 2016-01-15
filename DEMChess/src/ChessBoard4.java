@@ -82,7 +82,8 @@ public class ChessBoard4 extends JFrame implements MouseListener, MouseMotionLis
 
         SaveMenu saveMenu=new SaveMenu(board);
         file.add(saveMenu);
-        
+        LoadMenu loadMenu= new LoadMenu(board);
+        file.add(loadMenu);
         ////////////////
         file.add(newMenu);
         ////////////////
@@ -263,7 +264,7 @@ public class ChessBoard4 extends JFrame implements MouseListener, MouseMotionLis
 
     }
 
-    private JLabel getPieceObject(ChessPiece piece)
+    private JLabel getPieceLabel(ChessPiece piece)
     {
         JLabel PieceLabel;
         try{
@@ -302,9 +303,9 @@ public class ChessBoard4 extends JFrame implements MouseListener, MouseMotionLis
             {                
                 this.pnlChessCells[y][x].removeAll();
                 if (whiteFront)
-                    this.pnlChessCells[y][x].add(this.getPieceObject(this.board.getPiece(pointtoString((y),(x)))), BorderLayout.CENTER);
+                    this.pnlChessCells[y][x].add(this.getPieceLabel(this.board.getPiece(pointtoString((y),(x)))), BorderLayout.CENTER);
                 else
-                    this.pnlChessCells[y][x].add(this.getPieceObject(this.board.getPiece(pointtoString((7-y),(7-x)))), BorderLayout.CENTER);
+                    this.pnlChessCells[y][x].add(this.getPieceLabel(this.board.getPiece(pointtoString((7-y),(7-x)))), BorderLayout.CENTER);
                 this.pnlChessCells[y][x].validate();
         }          
         System.out.println(board.toString());
